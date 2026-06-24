@@ -1,1 +1,47 @@
+//Max-heep
+#include<iostream>
+#include<queue> //ofor priority queue
+using namespace std;
 
+int main(){
+   priority_queue<int> pq; //max-heep alwas has Largest on top
+   
+   pq.push(10);
+   pq.push(30);
+   pq.push(20);
+   pq.push(5);
+
+    cout << "Top Element: " << pq.top() << endl; // 30 largest value
+
+    while(!pq.empty()){
+        cout << pq.top() << " ";
+        pq.pop();
+    }
+
+    return 0;
+}
+
+//Min Heep
+#include<iostream>
+#include<queue> //ofor priority queue
+using namespace std;
+
+int main(){
+   priority_queue<int, vector<int>, greater<int>> pq; //using greater for reverse the order
+   //template <class T, class Container = vector<T>, class Compare = less<T>>
+   //class priority_queue;  
+   
+   pq.push(10);
+   pq.push(30);
+   pq.push(20);
+   pq.push(5);
+
+    cout << "Top Element: " << pq.top() << endl; // 30 largest value
+
+    while(!pq.empty()){
+        cout << pq.top() << " ";
+        pq.pop();
+    }
+
+    return 0;
+}
