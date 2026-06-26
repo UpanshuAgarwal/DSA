@@ -1,0 +1,24 @@
+//For traverse using queue and for null use # 
+string serialize(TreeNode* root) {
+        if (!root) return "#,"; // Match deserialize base check
+        
+        string s = "";
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while (!q.empty()) {
+            TreeNode* curr = q.front();
+            q.pop();
+            
+            // FIX: Check the pointer itself for nullptr safely
+            if (curr == nullptr) {
+                s.append("#,");
+            } else {
+                s.append(to_string(curr->val) + ",");
+                // Push children unconditionally so null markers are recorded
+                q.push(curr->left);
+                q.push(curr->right);
+            }
+        }
+        return s;
+    }
