@@ -1,0 +1,43 @@
+
+TreeNode* deserialize(string data) {
+        if (data.empty() || data == "#,") return nullptr;
+
+        
+        vector<string> values;
+        stringstream ss(data);
+        string item;
+        while (getline(ss, item, ',')) {
+            if (!item.empty()) {
+                values.push_back(item);
+            }
+        }
+
+        TreeNode* root = new TreeNode(stoi(values[0]));
+        queue<TreeNode*> q;
+        q.push(root);
+
+        int i = 1; 
+       
+        while (!q.empty() && i < values.size()) {
+            TreeNode* parent = q.front();
+            q.pop();
+
+            // Process Left Child
+            if (values[i] != "#") {
+                TreeNode* leftChild = new TreeNode(stoi(values[i]));
+                parent->left = leftChild;
+                q.push(leftChild); 
+            }
+            i++; 
+
+            if (i < values.size() && values[i] != "#") {
+                TreeNode* rightChild = new TreeNode(stoi(values[i]));
+                parent->right = rightChild;
+                q.push(rightChild); 
+            }
+            i++; 
+        }
+
+        return root;
+    }
+};
