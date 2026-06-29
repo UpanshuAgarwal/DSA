@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+// Function to perform DFS traversal using a stack
+void graphTraversalDFS(int startNode, const vector<vector<int>>& graph, int totalNodes) {
+    // 1. Initialize the visited array with false
+    vector<bool> visited(totalNodes, false);
+    
+    // 2. Initialize the stack
+    stack<int> st;
+
+    // Push the starting node onto the stack
+    st.push(startNode);
+
+    cout << "DFS Traversal order: ";
+
+    while (!st.empty()) {
+        // Pop a vertex from the stack
+        int currentNode = st.top();
+        st.pop();
+
+        // If the node has not been visited yet
+        if (!visited[currentNode]) {
+            cout << currentNode << " ";
+            visited[currentNode] = true; // Mark it as visited
+        }
+
+        // Get all adjacent vertices of the popped vertex.
+        // If an adjacent vertex has not been visited, push it to the stack.
+        // We traverse in reverse order so they are popped in the correct order.
+        for (auto it = graph[currentNode].rbegin(); it != graph[currentNode].rend(); ++it) {
+            int neighbor = *it;
+            if (!visited[neighbor]) {
+                st.push(neighbor);
+            }
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    // Example Graph represented as an Adjacency List
+    // Node 0 is connected to 1 and 2
+    // Node 1 is connected to 0, 3, and 4
+    // Node 2 is connected to 0 and 4
+    // Node 3 is connected to 1
+    // Node 4 is connected to 1 and 2
+    
+    int totalNodes = 5;
+    vector<vector<int>> graph(totalNodes);
+
+    // Defining graph edges
+    graph[0] = {1, 2};
+    graph[1] = {0, 3, 4};
+    graph[2] = {0, 4};
+    graph[3] = {1};
+    graph[4] = {1, 2};
+
+    // Start traversal from node 0
+    graphTraversalDFS(0, graph, totalNodes);
+
+    return 0;
+}
