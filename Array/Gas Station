@@ -1,4 +1,4 @@
-class Solution {
+class Solution n
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
 
