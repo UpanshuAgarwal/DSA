@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+
+        int totalGas = 0; 
+        int totalCost = 0;
+
+        int start = 0, currentGas = 0;
+        
+        for (int i = 0; i < gas.size(); i++) {
+            
+            totalGas += gas[i];
+            totalCost += cost[i];
+            
+            currentGas += gas[i] - cost[i];
+
+            /*
+            This if block is an efficient way to discard huge chunks of the search space, turning an O(n²) brute‑force into O(n) time.
+            */               
+            if (currentGas < 0) {
+                start = i + 1;
+                currentGas = 0;
+            }
+        }
+        
+        return (totalGas >= totalCost) ? start : -1;
+
+    }
+};
