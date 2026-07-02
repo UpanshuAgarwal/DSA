@@ -23,7 +23,7 @@ public:
             }
         }
         
-        return (totalGas >= totalCost) ? start : -1;
+        return (totalGas >= totalCost) ? start : -1; //If totalGas < totalCost, it is mathematically impossible to complete the loop.
 
     }
 };
