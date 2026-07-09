@@ -1,8 +1,14 @@
 # Dynamic Programming
-*TRecursion to Mamoization
-step 1: create an array
-step 2: check if the value alredy excist.
-step 3: then return particular value.
+
+🔹 Memoization (Top‑Down DP)
+
+Approach: Start with recursion, and whenever you compute a subproblem, store the result in a cache (array or map).
+Flow: Recursive calls → check cache → compute if not present → save result → return.
+
+🔹 Tabulation (Bottom‑Up DP)
+
+Approach: Iteratively build the solution starting from base cases, filling a DP table until you reach the target.
+Flow: Initialize base cases → loop through states → compute each state from previous ones.
 
 This directory contains Dynamic Programming (DP) problems and solutions for the DSA repository.
 
